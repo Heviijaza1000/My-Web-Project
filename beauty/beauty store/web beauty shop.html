@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glow Store - Online Beauty Shop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+   <!-- 
+    The following <style> section contains custom CSS (Cascading Style Sheets).
+    I included this to style the HTML elements with colors, layout, spacing, and hover effects.
+    Even though the assignment asked for HTML, I used internal CSS to make the page visually appealing
+    and easier to navigate. This styling is optional but improves user experience.
+  -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ecc4cc;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .top-banner {
+      background-color: #ffcfd2;
+      text-align: center;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #822b2b;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff0ec;
+      padding: 15px 30px;
+      border-bottom: 1px solid #e2caca;
+    }
+
+    .logo img {
+      height: 70px;
+      width: auto;
+      display: block;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      margin: 0 30px;
+      position: relative;
+      max-width: 500px;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 45px 10px 15px;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      background-color: #fff;
+    }
+
+    .search-bar button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .header-links a {
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: #ffe5e5;
+      transition: background-color 0.3s ease;
+    }
+
+    .header-links a:hover {
+      background-color: #e6bcbc;
+    }
+
+    nav ul.main-nav {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 10px 0;
+      margin: 0;
+      background-color: #fff;
+      flex-wrap: wrap;
+    }
+
+    nav ul.main-nav > li {
+      position: relative;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #eee;
+      top: 100%;
+      left: 0;
+      padding: 10px;
+      z-index: 99;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .dropdown-menu li {
+      padding: 5px 10px;
+      white-space: nowrap;
+    }
+
+    nav ul.main-nav > li:hover .dropdown-menu {
+      display: block;
+    }
+
+    .banner {
+      position: relative;
+      height: 300px;
+      background: url('https://via.placeholder.com/1200x300/ffe5e0/8b0000?text=Glow+Store+Banner') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-text {
+      color: #fff;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    .banner-text h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    .featured {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .featured h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #b15373;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .product-card {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+
+    footer {
+      background-color: #ffebf0;
+      padding: 40px 20px;
+      color: #444;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-links h4 {
+      margin-bottom: 10px;
+      color: #b15373;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin: 5px 0;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .footer-links li:hover {
+      color: #8b3f5b;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      font-size: 22px;
+    }
+
+    .social-icons a {
+      color: #444;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #b15373;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .search-bar {
+        display: none;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="top-banner">
+    Free shipping on orders over $50 | Sign up for exclusive offers
+  </div>
+
+  <header>
+    <div class="logo">
+      <img src="gloe.png" alt="Glow Store Logo">
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products, brands..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <div class="header-links">
+      <a href="#">Special Offers</a>
+      <a href="#">Delivery & Payment</a>
+      <a href="#">About Us</a>
+      <a href="#">Login</a>
+    </div>
+  </header>
+
+  <nav>
+    <ul class="main-nav">
+      <li class="dropdown">Makeup
+        <ul class="dropdown-menu">
+          <li>Face</li>
+          <li>Eyes</li>
+          <li>Lips</li>
+          <li>Cheeks</li>
+          <li>New Arrivals</li>
+          <li>Get Help Choosing</li>
+        </ul>
+      </li>
+      <li class="dropdown">Skincare
+        <ul class="dropdown-menu">
+          <li>Cleansers</li>
+          <li>Moisturizers</li>
+          <li>Serums</li>
+          <li>Sunscreens</li>
+        </ul>
+      </li>
+      <li class="dropdown">Hair
+        <ul class="dropdown-menu">
+          <li>Shampoos</li>
+          <li>Conditioners</li>
+          <li>Hair Masks</li>
+          <li>Hair Tools</li>
+        </ul>
+      </li>
+      <li class="dropdown">Fragrance
+        <ul class="dropdown-menu">
+          <li>Women's Fragrance</li>
+          <li>Men's Fragrance</li>
+        </ul>
+      </li>
+      <li class="dropdown">Tools & Brushes
+        <ul class="dropdown-menu">
+          <li>Makeup Brushes</li>
+          <li>Sponges</li>
+          <li>Brush Cleaners</li>
+        </ul>
+      </li>
+      <li class="dropdown">Bath & Body
+        <ul class="dropdown-menu">
+          <li>Body Wash</li>
+          <li>Lotion</li>
+          <li>Scrubs</li>
+        </ul>
+      </li>
+      <li class="dropdown">Gifts & Giftcards
+        <ul class="dropdown-menu">
+          <li>Gift Sets</li>
+          <li>Gift Cards</li>
+          <li>Gift Wrapping</li>
+        </ul>
+      </li>
+      <li class="dropdown">Sales & Offers
+        <ul class="dropdown-menu">
+          <li>Seasonal Sales</li>
+          <li>Clearance</li>
+          <li>Buy One Get One Free</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="banner">
+    <div class="banner-text">
+      <h1>Radiant Looks, Effortless Beauty</h1>
+      <p id="beauty-quote" title="Beauty quote" style="font-family:Georgia, serif; font-style:italic; font-size:16px; color:#bb5b6b;">
+        Glow with confidence — where every product brings out your natural beauty.
+      </p>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Chosen For You</h2>
+    <div class="product-grid">
+      <div class="product-card"><img src="lip.avif" alt=""><h3>Glow Lipstick</h3><p>$14.99</p></div>
+      <div class="product-card"><img src="blush.jpeg" alt="Pechy Blush"><h3>Peachy Blush</h3><p>$19.99</p></div>
+      <div class="product-card"><img src="highlight.jpg" alt=""><h3>Face Highlighter</h3><p>$21.99</p></div>
+      <div class="product-card"><img src="bronzer.jpeg" alt=""><h3>Bronzer Compact</h3><p>$18.99</p></div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Trending Now</h2>
+    <div class="product-grid">
+      <div class="product-card"><img src="serum.webp" alt=""><h3>Hydrating Serum</h3><p>$24.99</p></div>
+      <div class="product-card"><img src="vitamin c toner.webp" alt=""><h3>Vitamin C Toner</h3><p>$17.50</p></div>
+      <div class="product-card"><img src="glow mask.jpeg" alt=""><h3>Glow Mask</h3><p>$22.00</p></div>
+      <div class="product-card"><img src="night cream.jpg" alt="Night Cream"><h3>Night Cream</h3><p>$20.00</p></div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Best Sellers</h2>
+    <div class="product-grid">
+      <div class="product-card"><img src="mascara.jpeg" alt="Volume Mascara"><h3>Volume Mascara</h3><p>$22.99</p></div>
+      <div class="product-card"><img src="lip cream.webp" alt=""><h3>Soft Matte Lip Cream</h3><p>$13.50</p></div>
+      <div class="product-card"><img src="foundation.webp" alt=""><h3>Glow Foundation</h3><p>$28.00</p></div>
+      <div class="product-card"><img src="eyeliner.jpg" alt="Eye Liner"><h3>Waterproof Eyeliner</h3><p>$16.99</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <div>
+        <h4>Customer Service</h4>
+        <ul>
+          <li>Contact Us</li>
+          <li>Returns</li>
+          <li>FAQs</li>
+        </ul>
+      </div>
+      <div>
+        <h4>About Glow Store</h4>
+        <ul>
+          <li>Our Story</li>
+          <li>Careers</li>
+          <li>Affiliates</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2025 Glow Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelector('.search-bar button').addEventListener('click', function () {
+      const searchValue = document.querySelector('.search-bar input').value.trim();
+      alert(searchValue ? 'You searched for: ' + searchValue : 'Please enter a search term.');
+    });
+
+    document.querySelector('.search-bar input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') document.querySelector('.search-bar button').click();
+    });
+
+    document.querySelectorAll('.main-nav > li').forEach(item => {
+      item.addEventListener('click', function () {
+        const menu = this.querySelector('.dropdown-menu');
+        if (menu) {
+          const isVisible = menu.style.display === 'block';
+          document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+          menu.style.display = isVisible ? 'none' : 'block';
+        }
+      });
+    });
+
+    window.addEventListener('click', function (e) {
+      if (!e.target.closest('nav')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => menu.style.display = 'none');
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
